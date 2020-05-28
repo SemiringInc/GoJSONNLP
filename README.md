@@ -1,0 +1,2 @@
+# GoJSONNLP
+JSON-NLP Go Package
