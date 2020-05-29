@@ -13,42 +13,42 @@ import (
 )
 
 type Meta struct {
-	DCConformsTo string `json:"DC.conformsTo"`
-	DCCreated    string `json:"DC.created"` // "2020-05-28T02:15:19"
-	DCDate       string `json:"DC.date"`    // "2020-05-28T02:15:19"
+	DCConformsTo string `json:"DC.conformsTo"` // version of JSON-NLP
+	DCCreated    string `json:"DC.created"`    // "2020-05-28T02:15:19"
+	DCDate       string `json:"DC.date"`       // "2020-05-28T02:15:19"
 }
 
 type MetaDocument struct {
 	DCConformsTo string `json:"DC.conformsTo"`
 	DCCreated    string `json:"DC.created"`  // "2020-05-28T02:15:19"
 	DCDate       string `json:"DC.date"`     // "2020-05-28T02:15:19"
-	DCSource     string `json:"DC.source"`   // "NLP1 2.2.3",
+	DCSource     string `json:"DC.source"`   // "NLP1 2.2.3"
 	DCLanguage   string `json:"DC.language"` // "en"
 }
 
 type TokenFeatures struct {
-	Overt bool // `json: "Overt"`
-	Stop  bool // `json: "Stop"`
-	Alpha bool // `json: "Alpha"`
+	Overt bool `json: "Overt,omitempty"`
+	Stop  bool `json: "Stop,omitempty"`
+	Alpha bool `json: "Alpha,omitempty"`
 	//NounTypeProp bool `json:"NounType_prop"`
-	Number         int    // `json:"Number"` // 1 = singular, 2 = dual, 3 or more = plural
-	Gender         string `json:"gender"` // male, female, neuter
-	Person         int    `json:"person"` // 1, 2, 3
-	Tense          string `json:"tense"`  // past, present, future
-	Perfect        bool   `json:"perfect"`
-	Continuous     bool   `json:"continuous"`
-	Case           string `json:"case"`    // nom, acc, dat, gen, voc, loc, inst, ...
-	Human          bool   `json:"human"`   // yes/no
-	Animate        bool   `json:"animate"` // yes/no
-	Negated        bool   `json:"negated"` // word in scope og negation
-	Countable      bool   `json:"countable"`
-	Factive        bool   `json:"factive"` // factive verb
-	Counterfactive bool   `json:"counterfactive"`
-	Irregular      bool   `json:"irregular"` // irregular verb or noun form
-	PhrasalVerb    bool   `json:"phrasalVerb"`
-	Mood           string `json:"mood"` // indicative, imperative, subjunctive
-	Foreign        bool   // `json: "Foreign"`
-	SpaceAfter     bool   // "SpaceAfter": true
+	Number         int    `json:"number,omitempty"` // 1 = singular, 2 = dual, 3 or more = plural
+	Gender         string `json:"gender,omitempty"` // male, female, neuter
+	Person         int    `json:"person,omitempty"` // 1, 2, 3
+	Tense          string `json:"tense,omitempty"`  // past, present, future
+	Perfect        bool   `json:"perfect,omitempty"`
+	Continuous     bool   `json:"continuous,omitempty"`
+	Case           string `json:"case,omitempty"`    // nom, acc, dat, gen, voc, loc, inst, ...
+	Human          bool   `json:"human,omitempty"`   // yes/no
+	Animate        bool   `json:"animate,omitempty"` // yes/no
+	Negated        bool   `json:"negated,omitempty"` // word in scope og negation
+	Countable      bool   `json:"countable,omitempty"`
+	Factive        bool   `json:"factive,omitempty"` // factive verb
+	Counterfactive bool   `json:"counterfactive,omitempty"`
+	Irregular      bool   `json:"irregular,omitempty"` // irregular verb or noun form
+	PhrasalVerb    bool   `json:"phrasalVerb,omitempty"`
+	Mood           string `json:"mood,omitempty"` // indicative, imperative, subjunctive
+	Foreign        bool   `json:"foreign,omitempty"`
+	SpaceAfter     bool   `json:"spaceAfter,omitempty"` //: true
 }
 
 type TokenMisc struct {
@@ -58,30 +58,30 @@ type TokenMisc struct {
 type TokenList struct {
 	ID                   int           `json:"id"`
 	SentenceID           int           `json:"sentence_id"`
-	Text                 string        `json:"text"`  // "John",
-	Lemma                string        `json:"lemma"` // "John",
-	XPoS                 string        `json:"xpos"`  // "NNP",
-	XPoSProbability      float64       `json:"xpos_prob"`
-	UPoS                 string        `json:"upos"` // "PROPN",
-	UPoSProbability      float64       `json:"upos_prob"`
-	EntityIOB            string        `json:"entity_iob"` // "B",
-	CharacterOffsetBegin int           `json:"characterOffsetBegin"`
-	CharacterOffsetEnd   int           `json:"characterOffsetEnd"`
-	PropID               string        `json:"propID"`            // PropBank ID
-	PropIDProbability    string        `json:"propIDProbability"` // PropBank ID probability
-	Lang                 string        `json:"lang"`              // "en",
-	Features             TokenFeatures `json:"features"`          //
+	Text                 string        `json:"text"`           // "John",
+	Lemma                string        `json:"lemma"`          // "John",
+	XPoS                 string        `json:"xpos,omitempty"` // "NNP",
+	XPoSProbability      float64       `json:"xpos_prob,omitempty"`
+	UPoS                 string        `json:"upos,omitempty"` // "PROPN",
+	UPoSProbability      float64       `json:"upos_prob,omitempty"`
+	EntityIOB            string        `json:"entity_iob,omitempty"` // "B",
+	CharacterOffsetBegin int           `json:"characterOffsetBegin,omitempty"`
+	CharacterOffsetEnd   int           `json:"characterOffsetEnd,omitempty"`
+	PropID               string        `json:"propID,omitempty"`            // PropBank ID
+	PropIDProbability    string        `json:"propIDProbability,omitempty"` // PropBank ID probability
+	Lang                 string        `json:"lang,omitempty"`              // "en",
+	Features             TokenFeatures `json:"features,omitempty"`          //
 	// Misc                 TokenMisc     `json:"misc"`
-	Shape  string `json:"shape"`  // "Xxxx",
-	Entity string `json:"entity"` // "PERSON"
+	Shape  string `json:"shape,omitempty"`  // "Xxxx",
+	Entity string `json:"entity,omitempty"` // "PERSON"
 }
 
 // this is a new structure compared to the original JSON-NLP version
 type Sentence struct {
-	ID        int   `json:"id"`        //
-	TokenFrom int   `json:"tokenFrom"` //
-	TokenTo   int   `json:"tokenTo"`   //
-	Tokens    []int `json:"tokens"`    //
+	ID        int   `json:"id"`                  //
+	TokenFrom int   `json:"tokenFrom,omitempty"` //
+	TokenTo   int   `json:"tokenTo,omitempty"`   //
+	Tokens    []int `json:"tokens,omitempty"`    //
 }
 
 type Dependency struct {
@@ -93,18 +93,18 @@ type Dependency struct {
 // a dependency tree is redefined compared to the original version of JSON-NLP
 type DependencyTree struct {
 	SentenceID   int          `json:"sentenceID"`
-	Style        string       `json:"style"`
-	Dependencies []Dependency `json:"dependencies"`
+	Style        string       `json:"style,omitempty"`
+	Dependencies []Dependency `json:"dependencies,omitempty"`
 }
 
 type CoreferenceRepresentantive struct {
 	Tokens []int `json:"tokens"`
-	Head   int   `json:"head"`
+	Head   int   `json:"head,omitempty"`
 }
 
 type CoreferenceReferents struct {
 	Tokens []int `json:"tokens"`
-	Head   int   `json:"head"`
+	Head   int   `json:"head,omitempty"`
 }
 
 type Coreference struct {
@@ -115,33 +115,33 @@ type Coreference struct {
 
 type ConstituentParse struct {
 	SentenceID        int     `json:"sentenceId"`
-	Type              string  `json:"type"`
+	Type              string  `json:"type,omitempty"`
 	LabeledBracketing string  `json:"labeledBracketing"`
-	Probability       float64 `json:"prob"`
+	Probability       float64 `json:"prob,omitempty"`
 }
 
 type Expression struct {
 	ID         int    `json:"id"`
-	Type       string `json:"type"` // "NP"
-	Head       int    `json:"head"`
-	Dependency string `json:"dependency"` // "nsubj"
+	Type       string `json:"type,omitempty"` // "NP"
+	Head       int    `json:"head,omitempty"`
+	Dependency string `json:"dependency,omitempty"` // "nsubj"
 	Tokens     []int  `json:"tokens"`
 }
 
 type Document struct {
 	MetaDocument    MetaDocument       `json:"meta"`
 	ID              int                `json:"id"`
-	TokenList       []TokenList        `json:"tokenList"`
-	Sentences       []Sentence         `json:"sentences"`
-	DependencyTrees []DependencyTree   `json:"dependencyTrees"`
-	Coreferences    []Coreference      `json:"coreferences"`
-	Constituents    []ConstituentParse `json:"constituents"`
-	Expressions     []Expression       `json:"expressions"`
+	TokenList       []TokenList        `json:"tokenList,omitempty"`
+	Sentences       []Sentence         `json:"sentences,omitempty"`
+	DependencyTrees []DependencyTree   `json:"dependencyTrees,omitempty"`
+	Coreferences    []Coreference      `json:"coreferences,omitempty"`
+	Constituents    []ConstituentParse `json:"constituents,omitempty"`
+	Expressions     []Expression       `json:"expressions,omitempty"`
 }
 
 type JSONNLP struct {
-	MetaData  Meta       `json:"meta"`
-	Documents []Document `json:"documents"`
+	MetaData  Meta       `json:"meta,omitempty"`
+	Documents []Document `json:"documents,omitempty"`
 }
 
 func loadJSON(filename string) JSONNLP {
