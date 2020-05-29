@@ -9,7 +9,6 @@ package jsonnlp
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 )
 
@@ -145,17 +144,13 @@ type JSONNLP struct {
 	Documents []Document `json:"documents"`
 }
 
-// func loadJSON()
-
-func main() {
-	file, _ := ioutil.ReadFile("example1.json")
-
+func loadJSON(filename string) JSONNLP {
+	file, _ := ioutil.ReadFile(filename)
 	data := JSONNLP{}
-
 	_ = json.Unmarshal([]byte(file), &data)
+	return data
+}
 
-	for i := 0; i < len(data.Documents); i++ {
-		fmt.Println("Product Id: ", data.Documents[i].MetaDocument)
-		fmt.Println("Quantity: ", data.Documents[i].Constituents[0].LabeledBracketing)
-	}
+func getJSON(data JSONNLP) ([]byte, error) {
+	return json.Marshal(data)
 }
