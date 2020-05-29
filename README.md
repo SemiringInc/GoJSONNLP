@@ -33,6 +33,9 @@ Install the *jsonnlp* [Go] package using:
 
     go get https://github.com/SemiringInc/GoJSONNLP
 
+Update to new version using:
+
+    go get -u https://github.com/SemiringInc/GoJSONNLP
 
 
 
