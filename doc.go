@@ -22,4 +22,4 @@ Basic Structure
 Every JSON-NLP...
 
 */
-package jsonnlp // import "github.com/SemiringInc/jsonnlp"
+package jsonnlp // import "github.com/SemiringInc/GoJSONNLP"
