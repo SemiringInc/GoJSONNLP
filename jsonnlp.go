@@ -3,6 +3,8 @@
  * (C) 2020 by Semiring Inc., Damir Cavar
  *
  * reading and writing JSON-NLP data.
+ *
+ * version 0.2
  */
 
 package jsonnlp
@@ -27,9 +29,9 @@ type MetaDocument struct {
 }
 
 type TokenFeatures struct {
-	Overt bool `json: "Overt,omitempty"`
-	Stop  bool `json: "Stop,omitempty"`
-	Alpha bool `json: "Alpha,omitempty"`
+	Overt bool `json:"overt,omitempty"`
+	Stop  bool `json:"stop,omitempty"`
+	Alpha bool `json:"alpha,omitempty"`
 	//NounTypeProp bool `json:"NounType_prop"`
 	Number         int    `json:"number,omitempty"` // 1 = singular, 2 = dual, 3 or more = plural
 	Gender         string `json:"gender,omitempty"` // male, female, neuter
