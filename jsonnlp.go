@@ -15,12 +15,6 @@ import (
 )
 
 type Meta struct {
-	DCConformsTo string `json:"DC.conformsTo"` // version of JSON-NLP
-	DCCreated    string `json:"DC.created"`    // "2020-05-28T02:15:19"
-	DCDate       string `json:"DC.date"`       // "2020-05-28T02:15:19"
-}
-
-type MetaDocument struct {
 	DCConformsTo string `json:"DC.conformsTo"`
 	DCCreated    string `json:"DC.created"`  // "2020-05-28T02:15:19"
 	DCDate       string `json:"DC.date"`     // "2020-05-28T02:15:19"
@@ -131,7 +125,7 @@ type Expression struct {
 }
 
 type Document struct {
-	MetaDocument    MetaDocument       `json:"meta"`
+	MetaDocument    Meta               `json:"meta"`
 	ID              int                `json:"id"`
 	TokenList       []TokenList        `json:"tokenList,omitempty"`
 	Sentences       []Sentence         `json:"sentences,omitempty"`
