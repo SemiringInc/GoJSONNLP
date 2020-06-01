@@ -15,11 +15,16 @@ import (
 )
 
 type Meta struct {
-	DCConformsTo string `json:"DC.conformsTo"`
-	DCCreated    string `json:"DC.created"`  // "2020-05-28T02:15:19"
-	DCDate       string `json:"DC.date"`     // "2020-05-28T02:15:19"
-	DCSource     string `json:"DC.source"`   // "NLP1 2.2.3"
-	DCLanguage   string `json:"DC.language"` // "en"
+	DCConformsTo  string `json:"DC.conformsTo"`
+	DCCreated     string `json:"DC.created"`            // "2020-05-28T02:15:19"
+	DCDate        string `json:"DC.date,omitempty"`     // "2020-05-28T02:15:19"
+	DCSource      string `json:"DC.source,omitempty"`   // "NLP1 2.2.3"
+	DCLanguage    string `json:"DC.language,omitempty"` // "en"
+	DCCreator     string `json:"DC.creator,omitempty"`
+	DCPublisher   string `json:"DC.publisher,omitempty"`
+	DCTitle       string `json:"DC.title,omitempty"`
+	DCDescription string `json:"DC.description,omitempty"`
+	DCIdentifier  string `json:"DC.identifier,omitempty"`
 }
 
 type TokenFeatures struct {
