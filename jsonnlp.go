@@ -82,26 +82,30 @@ type TokenList struct {
 
 // this is a new structure compared to the original JSON-NLP version
 type Sentence struct {
-	ID        int    `json:"id"`                  // sentence ID
-	TokenFrom int    `json:"tokenFrom,omitempty"` // first token
-	TokenTo   int    `json:"tokenTo,omitempty"`   // last token
-	Tokens    []int  `json:"tokens,omitempty"`    // list of tokens in sentence
-	Clauses   []int  `json:"clauses,omitempty"`   // list of clauses in sentence
-	Type      string `json:"type,omitempty"`      // type of sentence: declarative, interrogative, exclamatory, imperative, instructive
+	ID                   int     `json:"id"`                      // sentence ID
+	TokenFrom            int     `json:"tokenFrom,omitempty"`     // first token
+	TokenTo              int     `json:"tokenTo,omitempty"`       // last token
+	Tokens               []int   `json:"tokens,omitempty"`        // list of tokens in sentence
+	Clauses              []int   `json:"clauses,omitempty"`       // list of clauses in sentence
+	Type                 string  `json:"type,omitempty"`          // type of sentence: declarative, interrogative, exclamatory, imperative, instructive
+	Sentiment            string  `json:"sentiment,omitempty"`     // sentiment type
+	SentimentProbability float64 `json:"sentimentProb,omitempty"` //
 }
 
 type Clause struct {
-	ID        int    `json:"id"`                  // clause ID
-	TokenFrom int    `json:"tokenFrom,omitempty"` // first token
-	TokenTo   int    `json:"tokenTo,omitempty"`   // last token
-	Tokens    []int  `json:"tokens,omitempty"`    // list of tokens
-	Main      bool   `json:"main,omitempty"`      // is it a main clause
-	Governor  int    `json:"gov,omitempty"`       // the id of the governing clause
-	Root      int    `json:"root,omitempty"`      // token ID of root (main verb or predicate head
-	Negation  bool   `json:"neg,omitempty"`       // clause negated
-	Tense     string `json:"tense,omitempty"`     //
-	Voice     string `json:"voice,omitempty"`     //
-	Mood      string `json:"mood,omitempty"`      //
+	ID                   int     `json:"id"`                      // clause ID
+	TokenFrom            int     `json:"tokenFrom,omitempty"`     // first token
+	TokenTo              int     `json:"tokenTo,omitempty"`       // last token
+	Tokens               []int   `json:"tokens,omitempty"`        // list of tokens
+	Main                 bool    `json:"main,omitempty"`          // is it a main clause
+	Governor             int     `json:"gov,omitempty"`           // the id of the governing clause
+	Head                 int     `json:"head,omitempty"`          // token ID of root/head (main verb or predicate head
+	Negation             bool    `json:"neg,omitempty"`           // clause negated
+	Tense                string  `json:"tense,omitempty"`         //
+	Voice                string  `json:"voice,omitempty"`         //
+	Mood                 string  `json:"mood,omitempty"`          //
+	Sentiment            string  `json:"sentiment,omitempty"`     //
+	SentimentProbability float64 `json:"sentimentProb,omitempty"` //
 }
 
 type Dependency struct {
@@ -168,17 +172,21 @@ type Attribute struct {
 }
 
 type Entity struct {
-	ID         int         `json:"id"`
-	Label      string      `json:"label"`
-	Type       string      `json:"type"`
-	Attributes []Attribute `json:"attributes"`
+	ID                   int         `json:"id"`
+	Label                string      `json:"label"`
+	Type                 string      `json:"type"`
+	Sentiment            string      `json:"sentiment,omitempty"`     //
+	SentimentProbability float64     `json:"sentimentProb,omitempty"` //
+	Attributes           []Attribute `json:"attributes"`
 }
 
 type Relation struct {
-	ID         int         `json:"id"`
-	Label      string      `json:"label"`
-	Type       string      `json:"type"`
-	Attributes []Attribute `json:"attributes"`
+	ID                   int         `json:"id"`
+	Label                string      `json:"label"`
+	Type                 string      `json:"type"`
+	Sentiment            string      `json:"sentiment,omitempty"`     //
+	SentimentProbability float64     `json:"sentimentProb,omitempty"` //
+	Attributes           []Attribute `json:"attributes"`
 }
 
 type Triple struct {
