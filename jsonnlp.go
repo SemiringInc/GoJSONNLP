@@ -4,7 +4,7 @@
  *
  * reading and writing JSON-NLP data.
  *
- * version 0.4
+ * version 0.5
  */
 
 package jsonnlp
@@ -14,7 +14,7 @@ import (
 	"io/ioutil"
 )
 
-const version string = "0.4"
+const version string = "0.5"
 
 type Meta struct {
 	DCConformsTo  string `json:"DC.conformsTo"`
@@ -185,10 +185,15 @@ type Triple struct {
 	FromEntity       int     `json:"fromEntity"`
 	ToEntity         int     `json:"toEntity"`
 	Relation         int     `json:"rel"`
+	ClauseID         int     `json:"clauseID,omitempty"`
+	SentenceID       int     `json:"sentenceID,omitempty"`
 	Directional      bool    `json:"directional,omitempty"`
-	EventID          int     `json:"enventID,omitempty"`
+	EventID          int     `json:"eventID,omitempty"`
 	TemporalSequence int     `json:"tempSeq,omitempty"`
 	Probability      float64 `json:"prob,omitempty"`
+	Syntactic        bool    `json:"syntactic,omitempty"`
+	Implied          bool    `json:"implied,omitempty"`
+	Presupposed      bool    `json:"presupposed,omitempty"`
 }
 
 type Document struct {
