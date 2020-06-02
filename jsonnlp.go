@@ -54,10 +54,6 @@ type TokenFeatures struct {
 	SpaceAfter     bool   `json:"spaceAfter,omitempty"` //: true
 }
 
-type TokenMisc struct {
-	SpaceAfter bool // "SpaceAfter": true
-}
-
 type TokenList struct {
 	ID                   int           `json:"id"`
 	SentenceID           int           `json:"sentence_id"`
@@ -71,12 +67,17 @@ type TokenList struct {
 	CharacterOffsetBegin int           `json:"characterOffsetBegin,omitempty"`
 	CharacterOffsetEnd   int           `json:"characterOffsetEnd,omitempty"`
 	PropID               string        `json:"propID,omitempty"`            // PropBank ID
-	PropIDProbability    string        `json:"propIDProbability,omitempty"` // PropBank ID probability
-	Lang                 string        `json:"lang,omitempty"`              // "en",
-	Features             TokenFeatures `json:"features,omitempty"`          //
-	// Misc                 TokenMisc     `json:"misc"`
-	Shape  string `json:"shape,omitempty"`  // "Xxxx",
-	Entity string `json:"entity,omitempty"` // "PERSON"
+	PropIDProbability    float64       `json:"propIDProbability,omitempty"` // PropBank ID probability
+	FrameID              int           `json:"frameID,omitempty"`
+	FrameIDProbability   float64       `json:"frameID,omitempty"`
+	WordNetID            int           `json:"wordNetID,omitempty"`
+	WordNetIDProbability float64       `json:"wordNetID,omitempty"`
+	VerbNetID            int           `json:"verbNetID,omitempty"`
+	VerbNetIDProbability float64       `json:"verbNetID,omitempty"`
+	Lang                 string        `json:"lang,omitempty"`     // "en",
+	Features             TokenFeatures `json:"features,omitempty"` //
+	Shape                string        `json:"shape,omitempty"`    // "Xxxx",
+	Entity               string        `json:"entity,omitempty"`   // "PERSON"
 }
 
 // this is a new structure compared to the original JSON-NLP version
@@ -104,9 +105,10 @@ type Clause struct {
 }
 
 type Dependency struct {
-	Label     string `json:"lab"`
-	Governor  int    `json:"gov"`
-	Dependent int    `json:"dep"`
+	Label       string  `json:"lab"`
+	Governor    int     `json:"gov"`
+	Dependent   int     `json:"dep"`
+	Probability float64 `json:"prob,omitempty"`
 }
 
 // a dependency tree is redefined compared to the original version of JSON-NLP
@@ -114,6 +116,7 @@ type DependencyTree struct {
 	SentenceID   int          `json:"sentenceID"`
 	Style        string       `json:"style,omitempty"`
 	Dependencies []Dependency `json:"dependencies,omitempty"`
+	Probability  float64      `json:"prob,omitempty"`
 }
 
 type CoreferenceRepresentantive struct {
@@ -122,14 +125,22 @@ type CoreferenceRepresentantive struct {
 }
 
 type CoreferenceReferents struct {
-	Tokens []int `json:"tokens"`
-	Head   int   `json:"head,omitempty"`
+	Tokens      []int   `json:"tokens"`
+	Head        int     `json:"head,omitempty"`
+	Probability float64 `json:"prob,omitempty"`
 }
 
 type Coreference struct {
-	ID              int                        `json:"id"`
-	Representartive CoreferenceRepresentantive `json:"representative"`
-	Referents       []CoreferenceReferents     `json:"referents"`
+	ID             int                        `json:"id"`
+	Representative CoreferenceRepresentantive `json:"representative"`
+	Referents      []CoreferenceReferents     `json:"referents"`
+}
+
+type Scope struct {
+	ID         int   `json:"id"`
+	Governor   []int `json:"gov"`
+	Dependents []int `json:"dep,omitempty"`
+	Terminals  []int `json:"terminals,omitempty"`
 }
 
 type ConstituentParse struct {
@@ -137,14 +148,18 @@ type ConstituentParse struct {
 	Type              string  `json:"type,omitempty"`
 	LabeledBracketing string  `json:"labeledBracketing"`
 	Probability       float64 `json:"prob,omitempty"`
+	Scopes            []Scope `json:"scopes,omitempty"`
 }
 
 type Expression struct {
-	ID         int    `json:"id"`
-	Type       string `json:"type,omitempty"` // "NP"
-	Head       int    `json:"head,omitempty"`
-	Dependency string `json:"dependency,omitempty"` // "nsubj"
-	Tokens     []int  `json:"tokens"`
+	ID          int     `json:"id"`
+	Type        string  `json:"type,omitempty"` // "NP"
+	Head        int     `json:"head,omitempty"`
+	Dependency  string  `json:"dependency,omitempty"` // "nsubj"
+	TokenFrom   int     `json:"tokenFrom,omitempty"`  // first token
+	TokenTo     int     `json:"tokenTo,omitempty"`    // last token
+	Tokens      []int   `json:"tokens"`
+	Probability float64 `json:"prob,omitempty"`
 }
 
 type Document struct {
