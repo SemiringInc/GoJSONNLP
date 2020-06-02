@@ -61,9 +61,9 @@ type TokenMisc struct {
 type TokenList struct {
 	ID                   int           `json:"id"`
 	SentenceID           int           `json:"sentence_id"`
-	Text                 string        `json:"text"`           // "John",
-	Lemma                string        `json:"lemma"`          // "John",
-	XPoS                 string        `json:"xpos,omitempty"` // "NNP",
+	Text                 string        `json:"text"`            // "John",
+	Lemma                string        `json:"lemma,omitempty"` // "John",
+	XPoS                 string        `json:"xpos,omitempty"`  // "NNP",
 	XPoSProbability      float64       `json:"xpos_prob,omitempty"`
 	UPoS                 string        `json:"upos,omitempty"` // "PROPN",
 	UPoSProbability      float64       `json:"upos_prob,omitempty"`
@@ -94,7 +94,7 @@ type Clause struct {
 	TokenFrom int    `json:"tokenFrom,omitempty"` // first token
 	TokenTo   int    `json:"tokenTo,omitempty"`   // last token
 	Tokens    []int  `json:"tokens,omitempty"`    // list of tokens
-	Main      bool   `json:"main"`                // is it a main clause
+	Main      bool   `json:"main,omitempty"`      // is it a main clause
 	Governor  int    `json:"gov,omitempty"`       // the id of the governing clause
 	Root      int    `json:"root,omitempty"`      // token ID of root (main verb or predicate head
 	Negation  bool   `json:"neg,omitempty"`       // clause negated
