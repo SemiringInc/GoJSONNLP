@@ -31,11 +31,11 @@ Many other wrappers and modules likely exist or will be made available.
 
 Install the *jsonnlp* [Go] package using:
 
-    go get https://github.com/SemiringInc/GoJSONNLP
+    go get github.com/SemiringInc/GoJSONNLP
 
 Update to new version using:
 
-    go get -u https://github.com/SemiringInc/GoJSONNLP
+    go get -u github.com/SemiringInc/GoJSONNLP
 
 
 
