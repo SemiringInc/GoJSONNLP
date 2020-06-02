@@ -162,6 +162,35 @@ type Expression struct {
 	Probability float64 `json:"prob,omitempty"`
 }
 
+type Attribute struct {
+	Label string `json:"lab"`
+	Value string `json:"val"`
+}
+
+type Entity struct {
+	ID         int         `json:"id"`
+	Label      string      `json:"label"`
+	Type       string      `json:"type"`
+	Attributes []Attribute `json:"attributes"`
+}
+
+type Relation struct {
+	ID         int         `json:"id"`
+	Label      string      `json:"label"`
+	Type       string      `json:"type"`
+	Attributes []Attribute `json:"attributes"`
+}
+
+type Triple struct {
+	FromEntity       int     `json:"fromEntity"`
+	ToEntity         int     `json:"toEntity"`
+	Relation         int     `json:"rel"`
+	Directional      bool    `json:"directional,omitempty"`
+	EventID          int     `json:"enventID,omitempty"`
+	TemporalSequence int     `json:"tempSeq,omitempty"`
+	Probability      float64 `json:"prob,omitempty"`
+}
+
 type Document struct {
 	MetaDocument    Meta               `json:"meta"`
 	ID              int                `json:"id"`
@@ -172,6 +201,9 @@ type Document struct {
 	Coreferences    []Coreference      `json:"coreferences,omitempty"`
 	Constituents    []ConstituentParse `json:"constituents,omitempty"`
 	Expressions     []Expression       `json:"expressions,omitempty"`
+	Entities        []Entity           `json:"entities,omitempty"`
+	Relations       []Relation         `json:"relations,omitempty"`
+	Triples         []Triple           `json:"triples,omitempty"`
 }
 
 type JSONNLP struct {
