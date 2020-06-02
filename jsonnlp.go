@@ -30,10 +30,9 @@ type Meta struct {
 }
 
 type TokenFeatures struct {
-	Overt bool `json:"overt,omitempty"`
-	Stop  bool `json:"stop,omitempty"`
-	Alpha bool `json:"alpha,omitempty"`
-	//NounTypeProp bool `json:"NounType_prop"`
+	Overt          bool   `json:"overt,omitempty"`
+	Stop           bool   `json:"stop,omitempty"`
+	Alpha          bool   `json:"alpha,omitempty"`
 	Number         int    `json:"number,omitempty"` // 1 = singular, 2 = dual, 3 or more = plural
 	Gender         string `json:"gender,omitempty"` // male, female, neuter
 	Person         int    `json:"person,omitempty"` // 1, 2, 3
