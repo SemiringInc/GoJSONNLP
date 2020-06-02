@@ -4,7 +4,7 @@
  *
  * reading and writing JSON-NLP data.
  *
- * version 0.2
+ * version 0.4
  */
 
 package jsonnlp
@@ -13,6 +13,8 @@ import (
 	"encoding/json"
 	"io/ioutil"
 )
+
+const version string = "0.4"
 
 type Meta struct {
 	DCConformsTo  string `json:"DC.conformsTo"`
@@ -79,10 +81,26 @@ type TokenList struct {
 
 // this is a new structure compared to the original JSON-NLP version
 type Sentence struct {
-	ID        int   `json:"id"`                  //
-	TokenFrom int   `json:"tokenFrom,omitempty"` //
-	TokenTo   int   `json:"tokenTo,omitempty"`   //
-	Tokens    []int `json:"tokens,omitempty"`    //
+	ID        int    `json:"id"`                  // sentence ID
+	TokenFrom int    `json:"tokenFrom,omitempty"` // first token
+	TokenTo   int    `json:"tokenTo,omitempty"`   // last token
+	Tokens    []int  `json:"tokens,omitempty"`    // list of tokens in sentence
+	Clauses   []int  `json:"clauses,omitempty"`   // list of clauses in sentence
+	Type      string `json:"type,omitempty"`      // type of sentence: declarative, interrogative, exclamatory, imperative, instructive
+}
+
+type Clause struct {
+	ID        int    `json:"id"`                  // clause ID
+	TokenFrom int    `json:"tokenFrom,omitempty"` // first token
+	TokenTo   int    `json:"tokenTo,omitempty"`   // last token
+	Tokens    []int  `json:"tokens,omitempty"`    // list of tokens
+	Main      bool   `json:"main"`                // is it a main clause
+	Governor  int    `json:"gov,omitempty"`       // the id of the governing clause
+	Root      int    `json:"root,omitempty"`      // token ID of root (main verb or predicate head
+	Negation  bool   `json:"neg,omitempty"`       // clause negated
+	Tense     string `json:"tense,omitempty"`     //
+	Voice     string `json:"voice,omitempty"`     //
+	Mood      string `json:"mood,omitempty"`      //
 }
 
 type Dependency struct {
@@ -134,6 +152,7 @@ type Document struct {
 	ID              int                `json:"id"`
 	TokenList       []TokenList        `json:"tokenList,omitempty"`
 	Sentences       []Sentence         `json:"sentences,omitempty"`
+	Clauses         []Clause           `json:"clauses,omitempty"`
 	DependencyTrees []DependencyTree   `json:"dependencyTrees,omitempty"`
 	Coreferences    []Coreference      `json:"coreferences,omitempty"`
 	Constituents    []ConstituentParse `json:"constituents,omitempty"`
