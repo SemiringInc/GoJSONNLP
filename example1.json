@@ -693,7 +693,8 @@
             10,
             11,
             12
-          ]
+          ],
+          "sentiment": "neutral"
         },
         "2": {
           "id": 2,
@@ -708,7 +709,7 @@
             18,
             19
           ],
-          "sentiment": "pos"
+          "sentiment": "positive"
         },
         "3": {
           "id": 3,
@@ -724,7 +725,8 @@
             26,
             27,
             28
-          ]
+          ],
+          "sentiment": "neutral"
         }
       },
       "dependencyTrees": [
