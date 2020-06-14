@@ -7,7 +7,7 @@ Package version 0.5
 
 ## Introduction
 
-This repository provides the [Go] package *jsonnlp* for reading and writing [JSON-NLP] Schema conform data. [JSON-NLP] encodes outputs from Natural Language Processing (NLP) pipelines as some form of a middleware.
+This repository provides the [Go] package *jsonnlp* for reading and writing [JSON-NLP] Schema conform data. [JSON-NLP] encodes outputs from Natural Language Processing (NLP) pipelines, functioning as some form of a middleware.
 
 [JSON-NLP] wrappers for the output formats from various NLP pipelines are available:
 
