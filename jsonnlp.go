@@ -4,7 +4,7 @@
  *
  * reading and writing JSON-NLP data.
  *
- * version 0.5
+ * version 0.6
  */
 
 package jsonnlp
@@ -14,7 +14,7 @@ import (
 	"io/ioutil"
 )
 
-const version string = "0.5"
+const version string = "0.6"
 
 type Meta struct {
 	DCConformsTo  string `json:"DC.conformsTo"`
@@ -165,6 +165,14 @@ type Expression struct {
 	Probability float64 `json:"prob,omitempty"`
 }
 
+type Paragraph struct {
+	ID        int   `json:"id"`
+	TokenFrom int   `json:"tokenFrom,omitempty"`
+	TokenTo   int   `json:"tokenTo,omitempty"`
+	Tokens    []int `json:"tokens,omitempty"`
+	Sentences []int `json:"sentences,omitempty"`
+}
+
 type Attribute struct {
 	Label string `json:"lab"`
 	Value string `json:"val"`
@@ -207,8 +215,9 @@ type Document struct {
 	MetaDocument    Meta               `json:"meta"`
 	ID              int                `json:"id"`
 	TokenList       []TokenList        `json:"tokenList,omitempty"`
-	Sentences       []Sentence         `json:"sentences,omitempty"`
 	Clauses         []Clause           `json:"clauses,omitempty"`
+	Sentences       []Sentence         `json:"sentences,omitempty"`
+	Paragraphs      []Paragraph        `json:"paragraphs,omitempty"`
 	DependencyTrees []DependencyTree   `json:"dependencyTrees,omitempty"`
 	Coreferences    []Coreference      `json:"coreferences,omitempty"`
 	Constituents    []ConstituentParse `json:"constituents,omitempty"`
