@@ -4,7 +4,7 @@
  *
  * reading and writing JSON-NLP data.
  *
- * version 0.6
+ * version 0.7
  */
 
 package jsonnlp
@@ -232,13 +232,13 @@ type JSONNLP struct {
 	Documents []Document `json:"documents,omitempty"`
 }
 
-func loadJSON(filename string) JSONNLP {
+func LoadJSON(filename string) JSONNLP {
 	file, _ := ioutil.ReadFile(filename)
 	data := JSONNLP{}
 	_ = json.Unmarshal([]byte(file), &data)
 	return data
 }
 
-func getJSON(data JSONNLP) ([]byte, error) {
+func GetJSON(data JSONNLP) ([]byte, error) {
 	return json.Marshal(data)
 }

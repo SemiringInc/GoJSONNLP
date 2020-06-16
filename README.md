@@ -2,7 +2,7 @@
 
 (C) 2020 by [Semiring Inc.], [Damir Cavar]
 
-Package version 0.6
+Package version 0.7
 
 
 ## Introduction
