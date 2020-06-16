@@ -4,6 +4,7 @@
 
 Package version 0.7
 
+---
 
 ## Introduction
 
@@ -27,6 +28,8 @@ Many other wrappers and modules likely exist or will be made available.
 - Python: [Py-JSON-NLP](https://github.com/dcavar/Py-JSON-NLP)
 
 
+---
+
 ## Installation
 
 Install the *jsonnlp* [Go] package using:
@@ -37,11 +40,13 @@ Update to new version using:
 
     go get -u github.com/SemiringInc/GoJSONNLP
 
+---
 
 ## Visualization of JSON-NLP
 
 There is a visualizer for [JSON-NLP] available here: [https://semiringinc.github.io/JSON-NLP-Viz/](https://semiringinc.github.io/JSON-NLP-Viz/)
 
+---
 
 
 

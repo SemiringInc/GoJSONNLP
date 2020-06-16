@@ -232,13 +232,20 @@ type JSONNLP struct {
 	Documents []Document `json:"documents,omitempty"`
 }
 
-func LoadJSON(filename string) JSONNLP {
-	file, _ := ioutil.ReadFile(filename)
-	data := JSONNLP{}
-	_ = json.Unmarshal([]byte(file), &data)
-	return data
+// FromString reads the JSON-NLP instance from a string.
+func (data *JSONNLP) FromString(t string) {
+	// TODO check whether data has any content
+	_ = json.Unmarshal([]byte(t), data)
 }
 
-func GetJSON(data JSONNLP) ([]byte, error) {
+// FromFile reads the JSON-NLP instance from a file.
+func (data *JSONNLP) FromFile(filename string) {
+	// TODO check whether data has any content
+	file, _ := ioutil.ReadFile(filename)
+	_ = json.Unmarshal([]byte(file), data)
+}
+
+// GetJSON returns the JSON-NLP instance as a byte array.
+func (data *JSONNLP) GetJSON() ([]byte, error) {
 	return json.Marshal(data)
 }
