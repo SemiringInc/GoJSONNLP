@@ -38,6 +38,12 @@ Update to new version using:
     go get -u github.com/SemiringInc/GoJSONNLP
 
 
+## Visualization of JSON-NLP
+
+There is a visualizer for [JSON-NLP] available here: [https://semiringinc.github.io/JSON-NLP-Viz/](https://semiringinc.github.io/JSON-NLP-Viz/)
+
+
+
 
 [Semiring Inc.]: https://semiring.com/ "Semiring Inc."
 [Damir Cavar]: http://damir.cavar.me/ "Damir Cavar"
