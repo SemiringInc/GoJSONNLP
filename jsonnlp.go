@@ -93,6 +93,7 @@ type Sentence struct {
 
 type Clause struct {
 	ID                   int     `json:"id"`                      // clause ID
+	SentenceID           int     `json:"sentenceID"`              // sentence ID
 	TokenFrom            int     `json:"tokenFrom,omitempty"`     // first token
 	TokenTo              int     `json:"tokenTo,omitempty"`       // last token
 	Tokens               []int   `json:"tokens,omitempty"`        // list of tokens
