@@ -4,7 +4,7 @@
  *
  * reading and writing JSON-NLP data.
  *
- * version 0.7
+ * version 0.8
  */
 
 package jsonnlp
@@ -14,7 +14,7 @@ import (
 	"io/ioutil"
 )
 
-const version string = "0.6"
+const version string = "0.8"
 
 type Meta struct {
 	DCConformsTo  string `json:"DC.conformsTo"`
