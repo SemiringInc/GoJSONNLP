@@ -102,8 +102,9 @@ type Clause struct {
 	Head                 int     `json:"head,omitempty"`          // token ID of root/head (main verb or predicate head
 	Negation             bool    `json:"neg,omitempty"`           // clause negated
 	Tense                string  `json:"tense,omitempty"`         //
-	Voice                string  `json:"voice,omitempty"`         //
 	Mood                 string  `json:"mood,omitempty"`          //
+	Aspect               string  `json:"aspect,omitempty"`        //
+	Voice                string  `json:"voice,omitempty"`         //
 	Sentiment            string  `json:"sentiment,omitempty"`     //
 	SentimentProbability float64 `json:"sentimentProb,omitempty"` //
 }
