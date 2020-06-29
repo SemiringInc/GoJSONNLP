@@ -53,7 +53,7 @@ type TokenFeatures struct {
 	SpaceAfter     bool   `json:"spaceAfter,omitempty"` //: true
 }
 
-type TokenList struct {
+type Token struct {
 	ID                   int           `json:"id"`
 	SentenceID           int           `json:"sentence_id"`
 	Text                 string        `json:"text"`            // "John",
@@ -216,7 +216,7 @@ type Triple struct {
 type Document struct {
 	MetaDocument    Meta               `json:"meta"`
 	ID              int                `json:"id"`
-	TokenList       []TokenList        `json:"tokenList,omitempty"`
+	TokenList       []Token            `json:"tokenList,omitempty"`
 	Clauses         []Clause           `json:"clauses,omitempty"`
 	Sentences       []Sentence         `json:"sentences,omitempty"`
 	Paragraphs      []Paragraph        `json:"paragraphs,omitempty"`
