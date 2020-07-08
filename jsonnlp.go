@@ -4,7 +4,7 @@
  *
  * reading and writing JSON-NLP data.
  *
- * version 0.8
+ * version 0.8.1
  */
 
 package jsonnlp
@@ -14,10 +14,11 @@ import (
 	"io/ioutil"
 )
 
-const version string = "0.8"
+const version string = "0.8.1"
 
 type Meta struct {
 	DCConformsTo  string `json:"DC.conformsTo"`
+	DCAuthor      string `json:"DC.author"`             // "2020-05-28T02:15:19"
 	DCCreated     string `json:"DC.created"`            // "2020-05-28T02:15:19"
 	DCDate        string `json:"DC.date,omitempty"`     // "2020-05-28T02:15:19"
 	DCSource      string `json:"DC.source,omitempty"`   // "NLP1 2.2.3"
@@ -184,8 +185,14 @@ type Entity struct {
 	ID                   int         `json:"id"`
 	Label                string      `json:"label"`
 	Type                 string      `json:"type"`
+	URL                  string      `json:"url"`
+	Head                 int         `json:"head,omitempty"`
+	TokenFrom            int         `json:"tokenFrom,omitempty"`
+	TokenTo              int         `json:"tokenTo,omitempty"`
+	Tokens               []int       `json:"tokens,omitempty"`
 	Sentiment            string      `json:"sentiment,omitempty"`     //
 	SentimentProbability float64     `json:"sentimentProb,omitempty"` //
+	Count                int         `json:"count,omitempty"`
 	Attributes           []Attribute `json:"attributes"`
 }
 
@@ -193,8 +200,14 @@ type Relation struct {
 	ID                   int         `json:"id"`
 	Label                string      `json:"label"`
 	Type                 string      `json:"type"`
+	URL                  string      `json:"url"`
+	Head                 int         `json:"head,omitempty"`
+	TokenFrom            int         `json:"tokenFrom,omitempty"`
+	TokenTo              int         `json:"tokenTo,omitempty"`
+	Tokens               []int       `json:"tokens,omitempty"`
 	Sentiment            string      `json:"sentiment,omitempty"`     //
 	SentimentProbability float64     `json:"sentimentProb,omitempty"` //
+	Count                int         `json:"count,omitempty"`
 	Attributes           []Attribute `json:"attributes"`
 }
 
@@ -202,8 +215,8 @@ type Triple struct {
 	FromEntity       int     `json:"fromEntity"`
 	ToEntity         int     `json:"toEntity"`
 	Relation         int     `json:"rel"`
-	ClauseID         int     `json:"clauseID,omitempty"`
-	SentenceID       int     `json:"sentenceID,omitempty"`
+	ClauseID         []int   `json:"clauseID,omitempty"`
+	SentenceID       []int   `json:"sentenceID,omitempty"`
 	Directional      bool    `json:"directional,omitempty"`
 	EventID          int     `json:"eventID,omitempty"`
 	TemporalSequence int     `json:"tempSeq,omitempty"`
@@ -211,6 +224,7 @@ type Triple struct {
 	Syntactic        bool    `json:"syntactic,omitempty"`
 	Implied          bool    `json:"implied,omitempty"`
 	Presupposed      bool    `json:"presupposed,omitempty"`
+	Count            int     `json:"count,omitempty"`
 }
 
 type Document struct {
