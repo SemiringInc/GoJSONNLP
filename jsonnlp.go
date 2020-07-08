@@ -93,17 +93,19 @@ type Sentence struct {
 }
 
 type Clause struct {
-	ID                   int     `json:"id"`                      // clause ID
-	SentenceID           int     `json:"sentenceID"`              // sentence ID
-	TokenFrom            int     `json:"tokenFrom,omitempty"`     // first token
-	TokenTo              int     `json:"tokenTo,omitempty"`       // last token
-	Tokens               []int   `json:"tokens,omitempty"`        // list of tokens
-	Main                 bool    `json:"main,omitempty"`          // is it a main clause
-	Governor             int     `json:"gov,omitempty"`           // the id of the governing clause
-	Head                 int     `json:"head,omitempty"`          // token ID of root/head (main verb or predicate head
-	Negation             bool    `json:"neg,omitempty"`           // clause negated
-	Tense                string  `json:"tense,omitempty"`         //
-	Mood                 string  `json:"mood,omitempty"`          //
+	ID                   int     `json:"id"`                  // clause ID
+	SentenceID           int     `json:"sentenceID"`          // sentence ID
+	TokenFrom            int     `json:"tokenFrom,omitempty"` // first token
+	TokenTo              int     `json:"tokenTo,omitempty"`   // last token
+	Tokens               []int   `json:"tokens,omitempty"`    // list of tokens
+	Main                 bool    `json:"main,omitempty"`      // is it a main clause
+	Governor             int     `json:"gov,omitempty"`       // the id of the governing clause
+	Head                 int     `json:"head,omitempty"`      // token ID of root/head (main verb or predicate head
+	Negation             bool    `json:"neg,omitempty"`       // clause negated
+	Tense                string  `json:"tense,omitempty"`     //
+	Mood                 string  `json:"mood,omitempty"`      //
+	Perfect              bool    `json:"perfect,omitempty"`
+	Continuous           bool    `json:"continuous,omitempty"`
 	Aspect               string  `json:"aspect,omitempty"`        //
 	Voice                string  `json:"voice,omitempty"`         //
 	Sentiment            string  `json:"sentiment,omitempty"`     //
