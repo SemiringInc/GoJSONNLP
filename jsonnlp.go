@@ -185,13 +185,14 @@ type Attribute struct {
 
 type Entity struct {
 	ID                   int         `json:"id"`
-	Label                string      `json:"label"`
+	Label                string      `json:"label,omitempty"`
 	Type                 string      `json:"type"`
 	URL                  string      `json:"url"`
 	Head                 int         `json:"head,omitempty"`
 	TokenFrom            int         `json:"tokenFrom,omitempty"`
 	TokenTo              int         `json:"tokenTo,omitempty"`
 	Tokens               []int       `json:"tokens,omitempty"`
+	TripleID             int         `json:"tripleID,omitempty"`      // reified entity pointer to triple ID
 	Sentiment            string      `json:"sentiment,omitempty"`     //
 	SentimentProbability float64     `json:"sentimentProb,omitempty"` //
 	Count                int         `json:"count,omitempty"`
@@ -214,6 +215,7 @@ type Relation struct {
 }
 
 type Triple struct {
+	ID               int     `json:"id"`
 	FromEntity       int     `json:"fromEntity"`
 	ToEntity         int     `json:"toEntity"`
 	Relation         int     `json:"rel"`
