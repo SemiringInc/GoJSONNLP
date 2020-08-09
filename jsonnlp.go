@@ -69,11 +69,11 @@ type Token struct {
 	PropID               string        `json:"propID,omitempty"`            // PropBank ID
 	PropIDProbability    float64       `json:"propIDProbability,omitempty"` // PropBank ID probability
 	FrameID              int           `json:"frameID,omitempty"`
-	FrameIDProbability   float64       `json:"frameID,omitempty"`
+	FrameIDProbability   float64       `json:"frameIDProb,omitempty"`
 	WordNetID            int           `json:"wordNetID,omitempty"`
-	WordNetIDProbability float64       `json:"wordNetID,omitempty"`
+	WordNetIDProbability float64       `json:"wordNetIDProb,omitempty"`
 	VerbNetID            int           `json:"verbNetID,omitempty"`
-	VerbNetIDProbability float64       `json:"verbNetID,omitempty"`
+	VerbNetIDProbability float64       `json:"verbNetIDProb,omitempty"`
 	Lang                 string        `json:"lang,omitempty"`     // "en",
 	Features             TokenFeatures `json:"features,omitempty"` //
 	Shape                string        `json:"shape,omitempty"`    // "Xxxx",
