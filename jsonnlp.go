@@ -17,9 +17,10 @@ import (
 const version string = "0.8.3"
 
 // Meta contains the common meta information for the entire JSON-NLP or a single document.
+// These are Dublin Core (DC) labels. See the DC documentation for details.
 type Meta struct {
 	DCConformsTo  string `json:"DC.conformsTo"`
-	DCAuthor      string `json:"DC.author"`             // "2020-05-28T02:15:19"
+	DCAuthor      string `json:"DC.author"`             //
 	DCCreated     string `json:"DC.created"`            // "2020-05-28T02:15:19"
 	DCDate        string `json:"DC.date,omitempty"`     // "2020-05-28T02:15:19"
 	DCSource      string `json:"DC.source,omitempty"`   // "NLP1 2.2.3"
@@ -54,7 +55,7 @@ type TokenFeatures struct {
 	PhrasalVerb    bool   `json:"phrasalVerb,omitempty"`
 	Mood           string `json:"mood,omitempty"` // indicative, imperative, subjunctive
 	Foreign        bool   `json:"foreign,omitempty"`
-	SpaceAfter     bool   `json:"spaceAfter,omitempty"` //: true
+	SpaceAfter     bool   `json:"spaceAfter,omitempty"` // space after token in orig text?
 }
 
 // Token structure contains all the token spoecific details.
@@ -131,7 +132,7 @@ type DependencyTree struct {
 	Style         string       `json:"style,omitempty"`
 	Dependencies  []Dependency `json:"dependencies,omitempty"`
 	Probability   float64      `json:"prob,omitempty"`
-	HashOverHeads int          `json:"hashhead"`
+	HashOverHeads int          `json:"hashhead,omitempty"`
 }
 
 // CoreferenceRepresentantive is
