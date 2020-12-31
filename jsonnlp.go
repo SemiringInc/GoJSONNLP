@@ -4,7 +4,7 @@
  *
  * reading and writing JSON-NLP data.
  *
- * version 0.8.1
+ * version 0.8.2
  */
 
 package jsonnlp
@@ -14,8 +14,9 @@ import (
 	"io/ioutil"
 )
 
-const version string = "0.8.1"
+const version string = "0.8.2"
 
+// Meta contains the common meta information for the entire JSON-NLP or a single document.
 type Meta struct {
 	DCConformsTo  string `json:"DC.conformsTo"`
 	DCAuthor      string `json:"DC.author"`             // "2020-05-28T02:15:19"
@@ -30,6 +31,7 @@ type Meta struct {
 	DCIdentifier  string `json:"DC.identifier,omitempty"`
 }
 
+// TokenFeatures is a data structure that containes all the detailed morphosyntactic token features.
 type TokenFeatures struct {
 	Overt          bool   `json:"overt,omitempty"`
 	Stop           bool   `json:"stop,omitempty"`
@@ -54,6 +56,7 @@ type TokenFeatures struct {
 	SpaceAfter     bool   `json:"spaceAfter,omitempty"` //: true
 }
 
+// Token structure contains all the token spoecific details.
 type Token struct {
 	ID                   int           `json:"id"`
 	SentenceID           int           `json:"sentence_id"`
@@ -80,7 +83,7 @@ type Token struct {
 	Entity               string        `json:"entity,omitempty"`   // "PERSON"
 }
 
-// this is a new structure compared to the original JSON-NLP version
+// Sentence is a new structure compared to the original JSON-NLP version.
 type Sentence struct {
 	ID                   int     `json:"id"`                      // sentence ID
 	TokenFrom            int     `json:"tokenFrom,omitempty"`     // first token
@@ -92,6 +95,7 @@ type Sentence struct {
 	SentimentProbability float64 `json:"sentimentProb,omitempty"` //
 }
 
+// Clause contains information about clause level properties.
 type Clause struct {
 	ID                   int     `json:"id"`                  // clause ID
 	SentenceID           int     `json:"sentenceID"`          // sentence ID
@@ -112,6 +116,7 @@ type Clause struct {
 	SentimentProbability float64 `json:"sentimentProb,omitempty"` //
 }
 
+// Dependency tree encoding in JSON-NLP.
 type Dependency struct {
 	Label       string  `json:"lab"`
 	Governor    int     `json:"gov"`
@@ -119,31 +124,36 @@ type Dependency struct {
 	Probability float64 `json:"prob,omitempty"`
 }
 
-// a dependency tree is redefined compared to the original version of JSON-NLP
+// DependencyTree is a dependency tree is redefined compared to the original version of JSON-NLP.
 type DependencyTree struct {
-	SentenceID   int          `json:"sentenceID"`
-	Style        string       `json:"style,omitempty"`
-	Dependencies []Dependency `json:"dependencies,omitempty"`
-	Probability  float64      `json:"prob,omitempty"`
+	SentenceID    int          `json:"sentenceID"`
+	Style         string       `json:"style,omitempty"`
+	Dependencies  []Dependency `json:"dependencies,omitempty"`
+	Probability   float64      `json:"prob,omitempty"`
+	HashOverHeads int          `json:"hashhead"`
 }
 
+// CoreferenceRepresentantive is
 type CoreferenceRepresentantive struct {
 	Tokens []int `json:"tokens"`
 	Head   int   `json:"head,omitempty"`
 }
 
+// CoreferenceReferents is
 type CoreferenceReferents struct {
 	Tokens      []int   `json:"tokens"`
 	Head        int     `json:"head,omitempty"`
 	Probability float64 `json:"prob,omitempty"`
 }
 
+// Coreference is
 type Coreference struct {
 	ID             int                        `json:"id"`
 	Representative CoreferenceRepresentantive `json:"representative"`
 	Referents      []CoreferenceReferents     `json:"referents"`
 }
 
+// Scope is
 type Scope struct {
 	ID         int   `json:"id"`
 	Governor   []int `json:"gov"`
@@ -151,6 +161,7 @@ type Scope struct {
 	Terminals  []int `json:"terminals,omitempty"`
 }
 
+// ConstituentParse is
 type ConstituentParse struct {
 	SentenceID        int     `json:"sentenceId"`
 	Type              string  `json:"type,omitempty"`
@@ -159,6 +170,7 @@ type ConstituentParse struct {
 	Scopes            []Scope `json:"scopes,omitempty"`
 }
 
+// Expression is
 type Expression struct {
 	ID          int     `json:"id"`
 	Type        string  `json:"type,omitempty"` // "NP"
@@ -170,6 +182,7 @@ type Expression struct {
 	Probability float64 `json:"prob,omitempty"`
 }
 
+// Paragraph is
 type Paragraph struct {
 	ID        int   `json:"id"`
 	TokenFrom int   `json:"tokenFrom,omitempty"`
@@ -178,11 +191,13 @@ type Paragraph struct {
 	Sentences []int `json:"sentences,omitempty"`
 }
 
+// Attribute is
 type Attribute struct {
 	Label string `json:"lab"`
 	Value string `json:"val"`
 }
 
+// Entity is
 type Entity struct {
 	ID                   int         `json:"id"`
 	Label                string      `json:"label,omitempty"`
@@ -199,6 +214,7 @@ type Entity struct {
 	Attributes           []Attribute `json:"attributes"`
 }
 
+// Relation is
 type Relation struct {
 	ID                   int         `json:"id"`
 	Label                string      `json:"label"`
@@ -214,6 +230,7 @@ type Relation struct {
 	Attributes           []Attribute `json:"attributes"`
 }
 
+// Triple is
 type Triple struct {
 	ID               int     `json:"id"`
 	FromEntity       int     `json:"fromEntity"`
@@ -231,6 +248,7 @@ type Triple struct {
 	Count            int     `json:"count,omitempty"`
 }
 
+// Document is
 type Document struct {
 	MetaDocument    Meta               `json:"meta"`
 	ID              int                `json:"id"`
@@ -247,6 +265,7 @@ type Document struct {
 	Triples         []Triple           `json:"triples,omitempty"`
 }
 
+// JSONNLP is
 type JSONNLP struct {
 	MetaData  Meta       `json:"meta,omitempty"`
 	Documents []Document `json:"documents,omitempty"`
