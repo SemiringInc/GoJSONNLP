@@ -4,7 +4,7 @@
  *
  * reading and writing JSON-NLP data.
  *
- * version 0.8.2
+ * version 0.8.3
  */
 
 package jsonnlp
@@ -14,7 +14,7 @@ import (
 	"io/ioutil"
 )
 
-const version string = "0.8.2"
+const version string = "0.8.3"
 
 // Meta contains the common meta information for the entire JSON-NLP or a single document.
 type Meta struct {
@@ -33,19 +33,20 @@ type Meta struct {
 
 // TokenFeatures is a data structure that containes all the detailed morphosyntactic token features.
 type TokenFeatures struct {
-	Overt          bool   `json:"overt,omitempty"`
-	Stop           bool   `json:"stop,omitempty"`
-	Alpha          bool   `json:"alpha,omitempty"`
-	Number         int    `json:"number,omitempty"` // 1 = singular, 2 = dual, 3 or more = plural
-	Gender         string `json:"gender,omitempty"` // male, female, neuter
-	Person         int    `json:"person,omitempty"` // 1, 2, 3
-	Tense          string `json:"tense,omitempty"`  // past, present, future
-	Perfect        bool   `json:"perfect,omitempty"`
-	Continuous     bool   `json:"continuous,omitempty"`
-	Case           string `json:"case,omitempty"`    // nom, acc, dat, gen, voc, loc, inst, ...
-	Human          bool   `json:"human,omitempty"`   // yes/no
-	Animate        bool   `json:"animate,omitempty"` // yes/no
-	Negated        bool   `json:"negated,omitempty"` // word in scope og negation
+	Overt          bool   `json:"overt,omitempty"`       // is the token overt? Invisible or covert words are words that are omitted in speech, subject to ellipsis, gapping, simple object, topic, or subject drop, etc.
+	Stop           bool   `json:"stop,omitempty"`        // is the token a stop-word or not?
+	Alpha          bool   `json:"alpha,omitempty"`       //
+	Number         int    `json:"number,omitempty"`      // 1 = singular, 2 = dual, 3 or more = plural
+	Gender         string `json:"gender,omitempty"`      // male, female, neuter
+	Person         int    `json:"person,omitempty"`      // 1, 2, 3
+	Tense          string `json:"tense,omitempty"`       // Tense of the token: past, present, future
+	Perfect        bool   `json:"perfect,omitempty"`     // Aspect of the token
+	Continuous     bool   `json:"continuous,omitempty"`  // is the token indicating continuous = ing
+	Progressive    bool   `json:"progressive,omitempty"` // is the token indicating progressive = am + ...ing
+	Case           string `json:"case,omitempty"`        // nom, acc, dat, gen, voc, loc, inst, ...
+	Human          bool   `json:"human,omitempty"`       // yes/no
+	Animate        bool   `json:"animate,omitempty"`     // yes/no
+	Negated        bool   `json:"negated,omitempty"`     // word in scope og negation
 	Countable      bool   `json:"countable,omitempty"`
 	Factive        bool   `json:"factive,omitempty"` // factive verb
 	Counterfactive bool   `json:"counterfactive,omitempty"`
