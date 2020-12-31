@@ -128,34 +128,33 @@ type Dependency struct {
 
 // DependencyTree is a dependency tree is redefined compared to the original version of JSON-NLP.
 type DependencyTree struct {
-	SentenceID    int          `json:"sentenceID"`
-	Style         string       `json:"style,omitempty"`
-	Dependencies  []Dependency `json:"dependencies,omitempty"`
-	Probability   float64      `json:"prob,omitempty"`
-	HashOverHeads int          `json:"hashhead,omitempty"`
+	SentenceID   int          `json:"sentenceID"`
+	Style        string       `json:"style,omitempty"`
+	Dependencies []Dependency `json:"dependencies,omitempty"`
+	Probability  float64      `json:"prob,omitempty"`
 }
 
-// CoreferenceRepresentantive is
+// CoreferenceRepresentantive contains a list of tokens and the ID of the head. This is the referent for other refering expressions like anaphora.
 type CoreferenceRepresentantive struct {
 	Tokens []int `json:"tokens"`
 	Head   int   `json:"head,omitempty"`
 }
 
-// CoreferenceReferents is
+// CoreferenceReferents contains a list of tokens indicating the referent and a respective head ID. There is an additional optional probability field that should indicate the likelyhood this referent refers to some R-expression.
 type CoreferenceReferents struct {
 	Tokens      []int   `json:"tokens"`
 	Head        int     `json:"head,omitempty"`
 	Probability float64 `json:"prob,omitempty"`
 }
 
-// Coreference is
+// Coreference is a coreference between a representative element and a list of referents.
 type Coreference struct {
 	ID             int                        `json:"id"`
 	Representative CoreferenceRepresentantive `json:"representative"`
 	Referents      []CoreferenceReferents     `json:"referents"`
 }
 
-// Scope is
+// Scope indicates the scope relations between a governor and dependents (including potentially terminals, which is words).
 type Scope struct {
 	ID         int   `json:"id"`
 	Governor   []int `json:"gov"`
@@ -163,7 +162,7 @@ type Scope struct {
 	Terminals  []int `json:"terminals,omitempty"`
 }
 
-// ConstituentParse is
+// ConstituentParse contains the syntactic constituent parse tree.
 type ConstituentParse struct {
 	SentenceID        int     `json:"sentenceId"`
 	Type              string  `json:"type,omitempty"`
@@ -172,7 +171,7 @@ type ConstituentParse struct {
 	Scopes            []Scope `json:"scopes,omitempty"`
 }
 
-// Expression is
+// Expression stores expressions, which mostly corresponds to chunks, that is phrases.
 type Expression struct {
 	ID          int     `json:"id"`
 	Type        string  `json:"type,omitempty"` // "NP"
@@ -184,7 +183,7 @@ type Expression struct {
 	Probability float64 `json:"prob,omitempty"`
 }
 
-// Paragraph is
+// Paragraph contains the information about paragraphs.
 type Paragraph struct {
 	ID        int   `json:"id"`
 	TokenFrom int   `json:"tokenFrom,omitempty"`
@@ -193,13 +192,13 @@ type Paragraph struct {
 	Sentences []int `json:"sentences,omitempty"`
 }
 
-// Attribute is
+// Attribute contains an attribute value tuple used in Entity and Relation specifications.
 type Attribute struct {
 	Label string `json:"lab"`
 	Value string `json:"val"`
 }
 
-// Entity is
+// Entity contains detailed information about entities in the sentence or clause.
 type Entity struct {
 	ID                   int         `json:"id"`
 	Label                string      `json:"label,omitempty"`
@@ -216,7 +215,7 @@ type Entity struct {
 	Attributes           []Attribute `json:"attributes"`
 }
 
-// Relation is
+// Relation encodes specific relations that can be specified between entities.
 type Relation struct {
 	ID                   int         `json:"id"`
 	Label                string      `json:"label"`
@@ -232,7 +231,7 @@ type Relation struct {
 	Attributes           []Attribute `json:"attributes"`
 }
 
-// Triple is
+// Triple contains a specific relation between two entities.
 type Triple struct {
 	ID               int     `json:"id"`
 	FromEntity       int     `json:"fromEntity"`
@@ -250,7 +249,7 @@ type Triple struct {
 	Count            int     `json:"count,omitempty"`
 }
 
-// Document is
+// Document is a structure that contains an ID, Meta information, and all the different linguistic annotations.
 type Document struct {
 	MetaDocument    Meta               `json:"meta"`
 	ID              int                `json:"id"`
@@ -267,7 +266,7 @@ type Document struct {
 	Triples         []Triple           `json:"triples,omitempty"`
 }
 
-// JSONNLP is
+// JSONNLP is a tuple of Meta information and a list of documents.
 type JSONNLP struct {
 	MetaData  Meta       `json:"meta,omitempty"`
 	Documents []Document `json:"documents,omitempty"`
