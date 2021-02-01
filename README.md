@@ -1,8 +1,8 @@
 # GoJSONNLP - JSON-NLP Go Code
 
-(C) 2020 by [Semiring Inc.], [Damir Cavar]
+(C) 2020-2021 by [Semiring Inc.], [Damir Cavar]
 
-Package version 0.8.1
+Package version 0.8.4
 
 ---
 

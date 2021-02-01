@@ -1,10 +1,10 @@
 /**
  * JSONNLP package
- * (C) 2020 by Semiring Inc., Damir Cavar
+ * (C) 2020-2021 by Semiring Inc., Damir Cavar
  *
  * reading and writing JSON-NLP data.
  *
- * version 0.8.3
+ * version 0.8.4
  */
 
 package jsonnlp
@@ -14,22 +14,38 @@ import (
 	"io/ioutil"
 )
 
-const version string = "0.8.3"
+const version string = "0.8.4"
 
 // Meta contains the common meta information for the entire JSON-NLP or a single document.
 // These are Dublin Core (DC) labels. See the DC documentation for details.
 type Meta struct {
-	DCConformsTo  string `json:"DC.conformsTo"`
-	DCAuthor      string `json:"DC.author"`             //
-	DCCreated     string `json:"DC.created"`            // "2020-05-28T02:15:19"
-	DCDate        string `json:"DC.date,omitempty"`     // "2020-05-28T02:15:19"
-	DCSource      string `json:"DC.source,omitempty"`   // "NLP1 2.2.3"
-	DCLanguage    string `json:"DC.language,omitempty"` // "en"
-	DCCreator     string `json:"DC.creator,omitempty"`
-	DCPublisher   string `json:"DC.publisher,omitempty"`
-	DCTitle       string `json:"DC.title,omitempty"`
-	DCDescription string `json:"DC.description,omitempty"`
-	DCIdentifier  string `json:"DC.identifier,omitempty"`
+	DCConformsTo   string     `json:"DC.conformsTo"`
+	DCAuthor       string     `json:"DC.author"`             //
+	DCCreated      string     `json:"DC.created"`            // "2020-05-28T02:15:19"
+	DCDate         string     `json:"DC.date,omitempty"`     // "2020-05-28T02:15:19"
+	DCSource       string     `json:"DC.source,omitempty"`   // "NLP1 2.2.3"
+	DCLanguage     string     `json:"DC.language,omitempty"` // "en"
+	DCCreator      string     `json:"DC.creator,omitempty"`
+	DCPublisher    string     `json:"DC.publisher,omitempty"`
+	DCTitle        string     `json:"DC.title,omitempty"`
+	DCDescription  string     `json:"DC.description,omitempty"`
+	DCIdentifier   string     `json:"DC.identifier,omitempty"`
+	DCSubject      string     `json:"DC.subject,omitempty"`
+	DCContributors string     `json:"DC.contributors,omitempty"`
+	DCType         string     `json:"DC.type,omitempty"`
+	DCFormat       string     `json:"DC.format,omitempty"`
+	DCRelation     string     `json:"DC.relation,omitempty"`
+	DCCoverage     string     `json:"DC.coverage,omitempty"`
+	DCRights       string     `json:"DC.rights,omitempty"`
+	Counts         MetaCounts `json:"counts,omitempty"`
+}
+
+// MetaCounts contains various statistics about the JSON-NLP, including document count, number of paragraphs, sentences, clauses, tokens
+type MetaCounts struct {
+	Paragraphs int `json:"paragraphs,omitempty"`
+	Sentences  int `json:"sentences,omitempty"`
+	Clauses    int `json:"clauses,omitempty"`
+	Tokens     int `json:"tokens,omitempty"`
 }
 
 // TokenFeatures is a data structure that containes all the detailed morphosyntactic token features.
@@ -266,10 +282,16 @@ type Document struct {
 	Triples         []Triple           `json:"triples,omitempty"`
 }
 
+// Conll holds the CoNLL-U format data for the analyses
+type Conll struct {
+	Data string `json:"data,omitempty"`
+}
+
 // JSONNLP is a tuple of Meta information and a list of documents.
 type JSONNLP struct {
 	MetaData  Meta       `json:"meta,omitempty"`
 	Documents []Document `json:"documents,omitempty"`
+	CoNLL     Conll      `json:"conll,omitempty"`
 }
 
 // FromString reads the JSON-NLP instance from a string.
